@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,7 +13,7 @@
         <!--TitleDisplay-->
         <scene sceneID="Vta-84-Wsn">
             <objects>
-                <viewController id="Mak-MR-9XD" userLabel="TitleDisplay" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="Mak-MR-9XD" userLabel="TitleDisplay" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="maZ-GI-KQt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -41,6 +42,9 @@
                                         <integer key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="fN8-yC-4eh" kind="presentation" id="cb4-3q-xs1"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D9i-5G-F5d">
                                 <rect key="frame" x="97" y="374" width="180" height="100"/>
@@ -59,6 +63,9 @@
                                         <integer key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" id="BAC-du-U2J"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ARB-ys-2qw"/>
@@ -69,10 +76,10 @@
             </objects>
             <point key="canvasLocation" x="-606" y="96"/>
         </scene>
-        <!--View Controller-->
+        <!--Diary List View Controller-->
         <scene sceneID="h3z-o4-aga">
             <objects>
-                <viewController id="fN8-yC-4eh" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overFullScreen" id="fN8-yC-4eh" customClass="DiaryListViewController" customModule="MyDiaryApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fGJ-ej-h3S">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -110,27 +117,21 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.83137254900000002" green="0.94509803920000002" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="SBQ-AF-sGu">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="diaryListCell" rowHeight="60" id="SBQ-AF-sGu">
                                         <rect key="frame" x="0.0" y="44.5" width="300" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SBQ-AF-sGu" id="Rk2-2P-0JG">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iwo-fn-goo">
-                                                    <rect key="frame" x="265" y="12" width="35" height="35"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" image="trash.circle.fill" catalog="system">
-                                                        <color key="baseForegroundColor" red="0.85882352939999995" green="0.55294117649999996" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </buttonConfiguration>
-                                                </button>
-                                            </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="fN8-yC-4eh" id="Plb-yJ-mK9"/>
+                                    <outlet property="delegate" destination="fN8-yC-4eh" id="XJF-uY-SAv"/>
+                                </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbZ-2x-wIH">
                                 <rect key="frame" x="237" y="597" width="100" height="50"/>
@@ -149,6 +150,9 @@
                                         <integer key="value" value="50"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" id="wrm-xd-pgF"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lzv-7W-q6J">
                                 <rect key="frame" x="37" y="76" width="300" height="50"/>
@@ -167,20 +171,27 @@
                                         <integer key="value" value="50"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="LLu-cW-btI" kind="presentation" id="89w-1D-hpe"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ol2-Lp-YKN"/>
                         <color key="backgroundColor" red="0.83137254900000002" green="0.94509803920000002" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="S1E-4G-DVO"/>
+                    <connections>
+                        <outlet property="TableView" destination="ZAw-HV-kKO" id="SkS-S3-R99"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dbI-Pe-Oxv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="76" y="95.802098950524751"/>
+            <point key="canvasLocation" x="252" y="96"/>
         </scene>
-        <!--View Controller-->
+        <!--Diary Detail List View Controller-->
         <scene sceneID="Inb-1u-HKs">
             <objects>
-                <viewController id="LLu-cW-btI" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overFullScreen" id="LLu-cW-btI" customClass="DiaryDetailListViewController" customModule="MyDiaryApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0Hf-ab-u6n">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -203,7 +214,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.83137254900000002" green="0.94509803920000002" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="100" id="gY3-nv-l9e">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="diaryDetailListCell" rowHeight="100" id="gY3-nv-l9e">
                                         <rect key="frame" x="0.0" y="44.5" width="300" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gY3-nv-l9e" id="3sA-ul-Hwk">
@@ -222,8 +233,15 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <segue destination="EXV-Bv-Oir" kind="presentation" modalPresentationStyle="overFullScreen" id="7my-Rc-2vW"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="LLu-cW-btI" id="PWA-L0-QGT"/>
+                                    <outlet property="delegate" destination="LLu-cW-btI" id="Bhh-CJ-Avc"/>
+                                </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vfp-55-2vp">
                                 <rect key="frame" x="237" y="597" width="100" height="50"/>
@@ -242,6 +260,9 @@
                                         <integer key="value" value="50"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" id="vCZ-mt-VpN"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="　文字で検索" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="50o-PP-SmV">
                                 <rect key="frame" x="187" y="21" width="150" height="30"/>
@@ -267,6 +288,9 @@
                                         <integer key="value" value="50"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="fN8-yC-4eh" kind="presentation" id="k4C-N9-hLQ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7Ti-9o-7F2"/>
@@ -275,25 +299,16 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CH6-3t-M3g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="757.60000000000002" y="95.802098950524751"/>
+            <point key="canvasLocation" x="1098" y="96"/>
         </scene>
-        <!--View Controller-->
+        <!--Input View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MyDiaryApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overFullScreen" id="BYZ-38-t0r" customClass="InputViewController" customModule="MyDiaryApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6EC-ea-1SC">
-                                <rect key="frame" x="22" y="20" width="330" height="550"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" red="0.33333333329999998" green="0.59215686270000001" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="textColor" red="0.33333333329999998" green="0.59215686270000001" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Efd-0X-roY">
                                 <rect key="frame" x="252" y="597" width="100" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -329,15 +344,30 @@
                                         <integer key="value" value="50"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="fN8-yC-4eh" kind="presentation" id="6nR-rE-lMK"/>
+                                </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iiH-cx-dpO">
+                                <rect key="frame" x="37" y="20" width="300" height="530"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" red="0.33333334329999997" green="0.33333334329999997" blue="0.33333334329999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.83137254900000002" green="0.94509803920000002" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="G1d-NO-NAh"/>
+                    <connections>
+                        <outlet property="contentTextView" destination="iiH-cx-dpO" id="0pH-qV-kbv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1446" y="767"/>
+            <point key="canvasLocation" x="1960.8" y="868.51574212893559"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Tsw-ge-JF7">
@@ -361,25 +391,16 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LdD-jg-pU0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2129" y="767"/>
+            <point key="canvasLocation" x="2894" y="869"/>
         </scene>
-        <!--View Controller-->
+        <!--Diary Text Display View Controller-->
         <scene sceneID="pDJ-gV-2WA">
             <objects>
-                <viewController id="EXV-Bv-Oir" customClass="ViewController" customModule="MyDiaryApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="EXV-Bv-Oir" customClass="DiaryTextDisplayViewController" customModule="MyDiaryApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vUn-Wu-i8b">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a6P-v1-0Ij">
-                                <rect key="frame" x="22" y="20" width="330" height="550"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" red="0.33333333329999998" green="0.59215686270000001" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="textColor" red="0.33333333329999998" green="0.59215686270000001" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6JD-f6-HXY">
                                 <rect key="frame" x="252" y="597" width="100" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -416,14 +437,33 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Zr-k7-AeV">
+                                <rect key="frame" x="37" y="20" width="300" height="520"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdN-UO-v3n">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="520"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.33333334329999997" green="0.33333334329999997" blue="0.33333334329999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <viewLayoutGuide key="contentLayoutGuide" id="At2-vQ-G5g"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="CN0-kK-hbI"/>
+                            </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="y48-tz-pEZ"/>
                         <color key="backgroundColor" red="0.83137254900000002" green="0.94509803920000002" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="UILabel" destination="bdN-UO-v3n" id="hFO-VV-eJ4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ecx-UH-XSK" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1446" y="96"/>
+            <point key="canvasLocation" x="1960.8" y="95.802098950524751"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="XeF-m4-567">
@@ -433,15 +473,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MO9-Ff-eez">
-                                <rect key="frame" x="22" y="20" width="330" height="550"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" red="0.33333333329999998" green="0.59215686270000001" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="textColor" red="0.33333333329999998" green="0.59215686270000001" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zjj-SH-lYG">
                                 <rect key="frame" x="252" y="597" width="100" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -478,6 +509,14 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wYc-Xh-plY">
+                                <rect key="frame" x="37" y="20" width="300" height="530"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" red="0.33333334329999997" green="0.33333334329999997" blue="0.33333334329999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4tX-1A-wu4"/>
                         <color key="backgroundColor" red="0.83137254900000002" green="0.94509803920000002" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
@@ -485,10 +524,17 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hcj-6j-8cC" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2130" y="96"/>
+            <point key="canvasLocation" x="2894" y="96"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="vCZ-mt-VpN"/>
+        <segue reference="k4C-N9-hLQ"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="trash.circle.fill" catalog="system" width="128" height="121"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
